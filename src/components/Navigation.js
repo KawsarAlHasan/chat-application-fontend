@@ -7,7 +7,7 @@ function Navigation() {
     <Navbar bg="light" expand="lg">
       <Container>
         <LinkContainer to="/">
-          <Navbar.Brand>Love Chat</Navbar.Brand>
+          <Navbar.Brand>💖Love Message❤️</Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
