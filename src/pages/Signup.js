@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import './Signup.css'
-import { Form, Button, Container, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Col, Container, Form, Row, Button } from 'react-bootstrap'
+import { useSignupUserMutation } from '../services/appApi'
+import { Link, useNavigate } from 'react-router-dom'
 import nobody from '../assets/nobody.png'
 
 function Signup() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
   const [name, setName] = useState('')
+  const [signupUser, { isLoding, error }] = useSignupUserMutation()
 
   // image upload states
   const [image, setImage] = useState(null)
@@ -52,12 +55,12 @@ function Signup() {
     const url = await uploadImage(image)
     console.log(url)
     // signup the user
-    // signupUser({ name, email, password, picture: url }).then(({ data }) => {
-    //   if (data) {
-    //     console.log(data)
-    //     navigate('/chat')
-    //   }
-    // })
+    signupUser({ name, email, password, picture: url }).then(({ data }) => {
+      if (data) {
+        console.log(data)
+        navigate('/chat')
+      }
+    })
   }
 
   return (
