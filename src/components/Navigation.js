@@ -7,8 +7,7 @@ import { useLogoutUserMutation } from '../services/appApi'
 function Navigation() {
   const user = useSelector((state) => state.user)
   const [logoutUser] = useLogoutUserMutation()
-
-  async function handleLogOut(e) {
+  async function handleLogout(e) {
     e.preventDefault()
     await logoutUser(user)
     window.location.replace('/')
@@ -33,11 +32,13 @@ function Navigation() {
                 </LinkContainer>
               </>,
             ]}
+            {!user && [
+              <LinkContainer to="/chat">
+                <Nav.Link>Chat</Nav.Link>
+              </LinkContainer>,
+            ]}
             {user && [
               <>
-                <LinkContainer to="/chat">
-                  <Nav.Link>Chat</Nav.Link>
-                </LinkContainer>
                 <NavDropdown
                   title={
                     <>
@@ -64,9 +65,9 @@ function Navigation() {
                   <NavDropdown.Item href="#action/3.3">
                     Something
                   </NavDropdown.Item>
-                  <NavDropdown.Item>
-                    <Button variant="danger" size="sm" onclick={handleLogOut}>
-                      Log out
+                  <NavDropdown.Item className="d-grid gap-2">
+                    <Button variant="danger" size="sm" onClick={handleLogout}>
+                      Logout
                     </Button>
                   </NavDropdown.Item>
                 </NavDropdown>

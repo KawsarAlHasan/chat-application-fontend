@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './Login.css'
-import { Form, Button, Container, Row, Col } from 'react-bootstrap'
+import { Form, Button, Container, Row, Col, Spinner } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
+import { AppContext } from '../context/appContext'
 import { useLoginUserMutation } from '../services/appApi'
 
 function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
+  const { socket } = useContext(AppContext)
   const [loginUser, { isLoding, error }] = useLoginUserMutation()
 
   async function handleLogin(e) {
@@ -16,6 +18,7 @@ function Login() {
     loginUser({ email, password }).then(({ data }) => {
       if (data) {
         // socket work
+        socket.emit('new-user')
         // navigate to the chat
         navigate('/chat')
       }
@@ -32,6 +35,7 @@ function Login() {
         >
           <Form style={{ width: '80%', maxWidth: 500 }} onSubmit={handleLogin}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
+              {error && <p className="alert alert">{error.data}</p>}
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 type="email"
@@ -56,7 +60,7 @@ function Login() {
               />
             </Form.Group>
             <Button variant="primary" type="submit">
-              Login
+              {isLoding ? <Spinner animation="grow" /> : 'Login'}
             </Button>
             <div className="py-4">
               <p className="text-center">

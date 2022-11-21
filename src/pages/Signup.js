@@ -89,6 +89,7 @@ function Signup() {
                 onChange={validateImg}
               />
             </div>
+            {error && <p className="alert alert">{error.data}</p>}
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -122,7 +123,9 @@ function Signup() {
               />
             </Form.Group>
             <Button variant="primary" type="submit">
-              {uploadingImg ? 'Signing you up...' : 'Create Account'}
+              {uploadingImg || isLoding
+                ? 'Signing you up...'
+                : 'Create Account'}
             </Button>
             <div className="py-4">
               <p className="text-center">
