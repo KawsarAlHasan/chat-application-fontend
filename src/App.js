@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Chat from './pages/Chat'
 import { useState } from 'react'
 import { AppContext, socket } from './context/appContext'
+import FirebaseLogin from './pages/FirebaseLogin'
 
 function App() {
   const user = useSelector((state) => state.user)
@@ -45,7 +46,8 @@ function App() {
           {!user && [
             <>
               <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
+              <Route path="/signup1" element={<FirebaseLogin />} />
+              <Route path="/signup2" element={<Signup />} />
             </>,
           ]}
           <Route path="/chat" element={<Chat />} />

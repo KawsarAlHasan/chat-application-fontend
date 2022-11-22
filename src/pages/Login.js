@@ -34,6 +34,7 @@ function Login() {
           className="d-flex align-items-center justify-content-center flex-direction-column"
         >
           <Form style={{ width: '80%', maxWidth: 500 }} onSubmit={handleLogin}>
+            <h1 className="text-center">Please Login</h1>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               {error && <p className="alert alert">{error.data}</p>}
               <Form.Label>Email address</Form.Label>
@@ -65,7 +66,7 @@ function Login() {
             <div className="py-4">
               <p className="text-center">
                 Don't have an account?{' '}
-                <Link to="/signup" className="text-decoration-none">
+                <Link to="/signup1" className="text-decoration-none">
                   Sign up
                 </Link>
               </p>

@@ -13,14 +13,10 @@ function Sidebar() {
     setCurrentRoom,
     members,
     setMembers,
-    messages,
-    setMessages,
     privateMemberMsg,
     setPrivateMemberMsg,
     rooms,
     setRooms,
-    newMessages,
-    setNewMessages,
   } = useContext(AppContext)
   const user = useSelector((state) => state.user)
 
@@ -35,8 +31,14 @@ function Sidebar() {
   }
 
   socket.off('notifications').on('notifications', (room) => {
-    if (currentRoom != room) dispatch(addNotifications(room))
+    if (currentRoom !== room) dispatch(addNotifications(room))
   })
+
+  function getRooms() {
+    fetch('http://localhost:5001/rooms')
+      .then((res) => res.json())
+      .then((data) => setRooms(data))
+  }
 
   useEffect(() => {
     if (user) {
@@ -50,12 +52,6 @@ function Sidebar() {
   socket.off('new-user').on('new-user', (payload) => {
     setMembers(payload)
   })
-
-  function getRooms() {
-    fetch('http://localhost:5001/rooms')
-      .then((res) => res.json())
-      .then((data) => setRooms(data))
-  }
 
   function orderIds(id1, id2) {
     if (id1 > id2) {
@@ -79,7 +75,7 @@ function Sidebar() {
           <ListGroup.Item
             key={idx}
             onClick={() => joinRoom(room)}
-            active={room == currentRoom}
+            active={room === currentRoom}
             style={{
               cursor: 'pointer',
               display: 'flex',
@@ -101,7 +97,7 @@ function Sidebar() {
           <ListGroup.Item
             key={member.id}
             style={{ cursor: 'pointer' }}
-            active={privateMemberMsg?._id == member?._id}
+            active={privateMemberMsg?._id === member?._id}
             onClick={() => handlePrivateMemberMsg(member)}
             disabled={member._id === user._id}
           >
@@ -110,12 +106,12 @@ function Sidebar() {
                 <img
                   src={member.picture}
                   className="member-status-img"
-                  alt="user image"
+                  alt="user"
                 />
-                {member.status == 'online' ? (
+                {member.status === 'online' ? (
                   <i className="fas fa-circle sidebar-online-status"></i>
                 ) : (
-                  <i className="fas fa-circle sidebar-ofline-status"></i>
+                  <i className="fas fa-circle sidebar-offline-status"></i>
                 )}
               </Col>
               <Col xs={9}>

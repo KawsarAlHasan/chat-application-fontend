@@ -4,9 +4,14 @@ import { Col, Container, Form, Row, Button } from 'react-bootstrap'
 import { useSignupUserMutation } from '../services/appApi'
 import { Link, useNavigate } from 'react-router-dom'
 import nobody from '../assets/nobody.png'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import auth from '../firebase.init'
 
 function Signup() {
-  const [email, setEmail] = useState('')
+  const [fUser] = useAuthState(auth)
+  let fEmail = fUser.email
+  let setFEmail
+  const [email, setEmail] = (useState('')[(fEmail, setFEmail)] = useState(''))
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
   const [name, setName] = useState('')
@@ -55,12 +60,14 @@ function Signup() {
     const url = await uploadImage(image)
     console.log(url)
     // signup the user
-    signupUser({ name, email, password, picture: url }).then(({ data }) => {
-      if (data) {
-        console.log(data)
-        navigate('/chat')
-      }
-    })
+    signupUser({ name, email, fEmail, password, picture: url }).then(
+      ({ data }) => {
+        if (data) {
+          console.log(data)
+          navigate('/chat')
+        }
+      },
+    )
   }
 
   return (
@@ -127,6 +134,13 @@ function Signup() {
                 ? 'Signing you up...'
                 : 'Create Account'}
             </Button>
+            <div className="d-none">
+              <Form.Control
+                type="email"
+                onChange={(e) => setFEmail(e.target.value)}
+                value={fEmail}
+              />
+            </div>
             <div className="py-4">
               <p className="text-center">
                 Already have an account?{' '}

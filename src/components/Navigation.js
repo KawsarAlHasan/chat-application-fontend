@@ -27,7 +27,7 @@ function Navigation() {
                 <LinkContainer to="/login">
                   <Nav.Link>Login</Nav.Link>
                 </LinkContainer>
-                <LinkContainer to="/signup">
+                <LinkContainer to="/signup1">
                   <Nav.Link>Signup</Nav.Link>
                 </LinkContainer>
               </>,

@@ -3,14 +3,14 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import Sidebar from '../components/Sidebar'
 import MessageForm from '../components/MessageForm'
-import Signup from '../pages/Signup'
+import Login from './Login'
 
 function Chat() {
   const user = useSelector((state) => state.user)
   if (!user) {
     return (
       <>
-        <Signup />
+        <Login />
       </>
     )
   }
