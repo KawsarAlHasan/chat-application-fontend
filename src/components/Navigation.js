@@ -14,10 +14,12 @@ function Navigation() {
   }
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="sm">
       <Container>
         <LinkContainer to="/">
-          <Navbar.Brand>💖Love Message❤️</Navbar.Brand>
+          <Navbar.Brand>
+            💖Love <span className="text-danger">Message❤️</span>
+          </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -38,40 +40,31 @@ function Navigation() {
               </LinkContainer>,
             ]}
             {user && [
-              <>
-                <NavDropdown
-                  title={
-                    <>
-                      <img
-                        src={user.picture}
-                        style={{
-                          width: 30,
-                          height: 30,
-                          marginRight: 10,
-                          objectFit: 'cover',
-                          borderRadius: '50%',
-                        }}
-                        alt="no internet"
-                      />
-                      {user.name}
-                    </>
-                  }
-                  id="basic-nav-dropdown"
-                >
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item>
-                  <NavDropdown.Item className="d-grid gap-2">
-                    <Button variant="danger" size="sm" onClick={handleLogout}>
-                      Logout
-                    </Button>
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </>,
+              <NavDropdown
+                title={
+                  <>
+                    <img
+                      src={user.picture}
+                      style={{
+                        width: 30,
+                        height: 30,
+                        marginRight: 10,
+                        objectFit: 'cover',
+                        borderRadius: '50%',
+                      }}
+                      alt="no internet"
+                    />
+                    {user.name}
+                  </>
+                }
+                id="basic-nav-dropdown"
+              >
+                <NavDropdown.Item className="d-grid gap-2">
+                  <Button variant="danger" size="sm" onClick={handleLogout}>
+                    Logout
+                  </Button>
+                </NavDropdown.Item>
+              </NavDropdown>,
             ]}
           </Nav>
         </Navbar.Collapse>

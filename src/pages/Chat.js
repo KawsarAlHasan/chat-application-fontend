@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import Sidebar from '../components/Sidebar'
 import MessageForm from '../components/MessageForm'
@@ -15,16 +15,16 @@ function Chat() {
     )
   }
   return (
-    <Container>
+    <div className="chat-container">
       <Row>
-        <Col md={4}>
+        <Col md={3} xs={2}>
           <Sidebar />
         </Col>
-        <Col md={8}>
+        <Col md={9} xs={10}>
           <MessageForm />
         </Col>
       </Row>
-    </Container>
+    </div>
   )
 }
 

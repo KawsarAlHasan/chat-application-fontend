@@ -1,8 +1,8 @@
 .messages-output {
-  height: 80vh;
+  height: 76vh;
   border: 1px solid lightgray;
   overflow-y: scroll;
-  margin-bottom: 20px;
+  margin-top: -13px;
 }
 
 .message-inner {
@@ -10,7 +10,7 @@
   margin-bottom: 10px;
   padding: 10px;
   min-width: 200px;
-  max-width: 90%;
+  max-width: 85%;
   text-align: left;
   min-height: 80px;
   font: 400 1em, sans-serif;
@@ -32,7 +32,8 @@
 .message-timestamp-left {
   font-size: 0.85em;
   font-weight: 300;
-  margin-top: 10px;
+  margin: -12px 0;
+  text-align: end;
 }
 
 .message-sender {
@@ -46,18 +47,27 @@
 }
 
 .conversation-info {
-  padding: 0;
-  margin: 0 auto;
   text-align: center;
-  height: 100px;
+  height: 67px;
 }
 
 .conversation-profile-pic {
-  width: 60px;
-  height: 60px;
+  width: 42px;
+  height: 42px;
   object-fit: cover;
-  margin: 10px auto;
-  margin-bottom: 30px;
   border-radius: 50%;
   margin-left: 10px;
+}
+
+.display-7 {
+  font-size: larger;
+}
+
+.image-icon {
+  margin: 7px 5px;
+}
+
+/* chat.js */
+.chat-container {
+  padding: 0 20px;
 }
