@@ -71,3 +71,30 @@
 .chat-container {
   padding: 0 20px;
 }
+
+.slideber-scroll {
+  height: 52vh;
+  border: 1px solid lightgray;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  margin-top: -10px;
+}
+
+@media only screen and (max-width: 575px) {
+  .slideber-scroll {
+    height: 80vh;
+    border: 1px solid lightgray;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-top: -10px;
+  }
+}
+
+/* .slideber-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.slideber-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+} */
