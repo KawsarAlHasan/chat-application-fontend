@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 const appApi = createApi({
   reducerPath: 'appApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://chat-application-server-k3yh.vercel.app',
+    baseUrl: 'https://chat-application-server-k4ks.onrender.com',
   }),
 
   endpoints: (builder) => ({

@@ -35,7 +35,7 @@ function Sidebar() {
   })
 
   function getRooms() {
-    fetch('https://chat-application-server-k3yh.vercel.app/rooms')
+    fetch('https://chat-application-server-k4ks.onrender.com/rooms')
       .then((res) => res.json())
       .then((data) => setRooms(data))
   }
